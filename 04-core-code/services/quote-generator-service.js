@@ -156,6 +156,7 @@ export class QuoteGeneratorService {
             deposit: `$${(grandTotal * 0.5).toFixed(2)}`,
             balance: `$${(grandTotal * 0.5).toFixed(2)}`,
             savings: `$${((summaryData.firstRbPrice || 0) - (summaryData.disRbPrice || 0)).toFixed(2)}`,
+            generalNotes: (f3Data.generalNotes || '').replace(/\n/g, '<br>'),
             termsAndConditions: (f3Data.termsConditions || 'Standard terms and conditions apply.').replace(/\n/g, '<br>'),
             rollerBlindsTable: this._generateItemsTableHtml(items, summaryData),
             motorQty: motorQty || '',
