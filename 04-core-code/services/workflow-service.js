@@ -68,6 +68,8 @@ export class WorkflowService {
             customerPhone: getValue('f3-customer-phone'),
             customerEmail: getValue('f3-customer-email'),
             finalOfferPrice: getValue('f3-final-offer-price'),
+            // [MODIFIED] Add the missing generalNotes field to be collected
+            generalNotes: getValue('f3-general-notes'),
             termsConditions: getValue('f3-terms-conditions'),
         };
     }
