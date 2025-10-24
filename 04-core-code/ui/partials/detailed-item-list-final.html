@@ -201,6 +201,9 @@
             }
             .detailed-list-table {
                 border: none;
+                /* [MODIFIED] Force table to behave like a block element to ensure full width */
+                display: block;
+                table-layout: auto;
             }
             .detailed-list-table thead {
                 border: none;
@@ -228,10 +231,10 @@
                 border-bottom: 1px solid var(--border-light-grey);
                 text-align: right;
             }
-            /* [NEW] This is the key fix for the mobile card view. It hides empty table cells. */
-            .detailed-list-table td.is-empty-cell {
+            /* [REMOVED] This rule was hiding empty cells (like HD, Dual) and is no longer needed. */
+            /* .detailed-list-table td.is-empty-cell {
                 display: none;
-            }
+            } */
             .detailed-list-table tr td:last-child {
                 border-bottom: none;
             }
