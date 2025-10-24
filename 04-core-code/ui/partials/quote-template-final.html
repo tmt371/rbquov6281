@@ -181,13 +181,8 @@
 
         /* --- 總計 --- */
         .summary-section {
-            /* [REMOVED] display: flex; justify-content: flex-end; */
-            /* [NEW] Add symmetrical styling to match payment-info */
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            padding: 20px;
-            width: 50%;
-            box-sizing: border-box;
+            display: flex;
+            justify-content: flex-end;
         }
 
         .summary-details {
@@ -212,6 +207,7 @@
         .summary-details .summary-value {
             text-align: right;
             font-weight: 500;
+            /* [MODIFIED] Added padding for better spacing */
             padding-right: 10px;
         }
 
@@ -228,11 +224,12 @@
             font-weight: bold;
         }
 
-        /* --- Wrapper for Summary and Payment sections --- */
+        /* --- [MODIFIED] Wrapper for Summary and Payment sections --- */
         .summary-payment-wrapper {
             display: flex;
             flex-direction: row;
             gap: 20px;
+            /* [NEW] Ensure vertical alignment from the top */
             align-items: flex-start;
         }
 
@@ -247,7 +244,6 @@
         .call-to-action {
             width: 50%;
             margin-top: 0;
-            box-sizing: border-box;
         }
 
         .payment-info {
@@ -257,6 +253,7 @@
         }
 
         .payment-info h4 {
+            /* [NEW] Remove top margin to fix alignment */
             margin-top: 0;
             color: var(--primary-color);
         }
@@ -353,9 +350,6 @@
 
             .summary-section {
                 justify-content: center;
-                /* [MODIFIED] padding reset for mobile view */
-                padding: 0;
-                border: none;
             }
 
             .summary-payment-wrapper {
@@ -363,6 +357,7 @@
                 gap: 20px;
             }
             
+            /* [NEW] Re-order the flex items for mobile view */
             .summary-payment-wrapper .summary-section {
                 order: 1;
             }
@@ -375,16 +370,17 @@
             .call-to-action,
             .summary-section {
                 width: 100%;
-                box-sizing: border-box;
+                box-sizing: border-box; /* Fix for overflow issue */
             }
 
             .table-scroll-wrapper {
-                overflow-x: hidden;
+                overflow-x: hidden; /* Prevent horizontal scroll on the wrapper */
             }
             .items-table {
                 border: none;
             }
             .items-table thead {
+                /* Visually hide the original header, but keep it for accessibility */
                 border: none;
                 clip: rect(0 0 0 0);
                 height: 1px;
@@ -420,6 +416,7 @@
                 padding-right: 15px;
                 color: #333;
             }
+            /* Style the first cell of each row to look like a header */
             .items-table td:first-of-type {
                 background-color: var(--primary-color);
                 color: white;
