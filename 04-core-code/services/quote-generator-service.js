@@ -215,9 +215,9 @@ export class QuoteGeneratorService {
                     cell('F-NAME', item.fabric || '', fabricClass),
                     cell('F-COLOR', item.color || '', fabricClass),
                     cell('Location', item.location || ''),
-                    cell('HD', item.winder === 'HD' ? '✔' : '', 'text-center'),
-                    cell('Dual', item.dual === 'D' ? '✔' : '', 'text-center'),
-                    cell('Motor', item.motor ? '✔' : '', 'text-center'),
+                    cell('HD', item.winder === 'HD' ? '✓' : '', 'text-center'),
+                    cell('Dual', item.dual === 'D' ? '✓' : '', 'text-center'),
+                    cell('Motor', item.motor ? '✓' : '', 'text-center'),
                     cell('Price', `$${finalPrice.toFixed(2)}`, 'text-right')
                 ].join('');
     
@@ -226,7 +226,7 @@ export class QuoteGeneratorService {
             .join('');
     
         return `
-            <table class="items-table detailed-list-table">
+            <table class="detailed-list-table">
                 <colgroup>
                     <col style="width: 5%;">
                     <col style="width: 20%;">
