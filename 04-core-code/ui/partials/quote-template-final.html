@@ -183,7 +183,6 @@
         .summary-section {
             display: flex;
             justify-content: flex-end;
-            /* [NEW] Add symmetrical styling to match payment-info */
             border: 1px solid var(--border-color);
             border-radius: 4px;
             padding: 20px;
@@ -237,21 +236,10 @@
             align-items: flex-start;
         }
 
-        .pmd-cta-wrapper {
-            display: flex;
-            justify-content: space-between;
-            gap: 40px;
-            margin-top: 30px;
-        }
-
-        .payment-info,
-        .call-to-action {
+        .payment-info {
             width: 50%;
             margin-top: 0;
             box-sizing: border-box;
-        }
-
-        .payment-info {
             border: 1px solid var(--border-color);
             border-radius: 4px;
             padding: 20px;
@@ -272,24 +260,32 @@
             width: 80px;
         }
 
-        .call-to-action {
+        /* [REMOVED] Old .pmd-cta-wrapper is no longer needed */
+
+        /* [NEW] A unified style for the notes and terms boxes */
+        .notes-terms-box {
+            width: 100%;
+            margin-top: 30px;
             padding: 20px;
             background-color: #f9f9f9;
             border: 1px solid var(--border-color);
             border-radius: 4px;
+            box-sizing: border-box;
         }
 
-        .call-to-action h4 {
+        .notes-terms-box h4 {
             margin-top: 0;
             color: var(--primary-color);
         }
 
-        .call-to-action p {
+        .notes-terms-box p {
             margin-bottom: 0;
             font-size: 14px;
             line-height: 1.6;
+            white-space: normal;
+            word-wrap: break-word;
         }
-
+        
         .footer {
             margin-top: 40px;
             padding-top: 20px;
@@ -299,16 +295,11 @@
             text-align: center;
         }
 
+        /* [MODIFIED] .terms now uses the shared style */
         .terms {
-            margin-top: 30px;
-            font-size: 13px;
-            color: #666;
+            margin-top: 20px; /* Reduced margin as it's now part of a consistent flow */
         }
 
-        .terms h4 {
-            color: var(--primary-color);
-            margin-bottom: 8px;
-        }
 
         @media (max-width: 768px) {
             .quotation-container {
@@ -354,7 +345,6 @@
 
             .summary-section {
                 justify-content: center;
-                /* [MODIFIED] padding reset for mobile view */
                 padding: 0;
                 border: none;
             }
@@ -373,10 +363,14 @@
             }
 
             .payment-info,
-            .call-to-action,
             .summary-section {
                 width: 100%;
                 box-sizing: border-box;
+            }
+
+            /* [MODIFIED] Ensure notes/terms box is also full width on mobile */
+            .notes-terms-box {
+                width: 100%;
             }
 
             .table-scroll-wrapper {
@@ -529,14 +523,12 @@
                     </section>
                 </div>
 
-                <div class="pmd-cta-wrapper">
-                    <section class="call-to-action">
-                        <h4>General Notes</h4>
-                        <p>{{{generalNotes}}}</p>
-                    </section>
-                </div>
+                <section class="notes-terms-box">
+                    <h4>General Notes</h4>
+                    <p>{{{generalNotes}}}</p>
+                </section>
 
-                <section class="terms">
+                <section class="terms notes-terms-box">
                     <h4>Terms & Conditions</h4>
                     {{{termsAndConditions}}}
                 </section>
