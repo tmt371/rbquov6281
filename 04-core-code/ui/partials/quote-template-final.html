@@ -207,6 +207,8 @@
         .summary-details .summary-value {
             text-align: right;
             font-weight: 500;
+            /* [MODIFIED] Added padding for better spacing */
+            padding-right: 10px;
         }
 
         .summary-details .grand-total td {
@@ -222,11 +224,13 @@
             font-weight: bold;
         }
 
-        /* --- [NEW] Wrapper for Summary and Payment sections --- */
+        /* --- [MODIFIED] Wrapper for Summary and Payment sections --- */
         .summary-payment-wrapper {
             display: flex;
             flex-direction: row;
             gap: 20px;
+            /* [NEW] Ensure vertical alignment from the top */
+            align-items: flex-start;
         }
 
         .pmd-cta-wrapper {
@@ -343,18 +347,24 @@
                 margin-right: 8px;
             }
 
-            /* [MODIFIED] Set justify-content to center to ensure summary table stays on the right */
             .summary-section {
                 justify-content: center;
             }
 
-            /* [MODIFIED] Changed from pmd-cta-wrapper to the new parent wrapper */
             .summary-payment-wrapper {
                 flex-direction: column;
                 gap: 20px;
             }
+            
+            /* [NEW] Re-order the flex items for mobile view */
+            .summary-payment-wrapper .summary-section {
+                order: 1;
+            }
 
-            /* [MODIFIED] Changed from pmd-cta-wrapper to the new parent wrapper */
+            .summary-payment-wrapper .payment-info {
+                order: 2;
+            }
+
             .payment-info,
             .call-to-action,
             .summary-section {
@@ -362,7 +372,6 @@
                 box-sizing: border-box; /* Fix for overflow issue */
             }
 
-            /* [MODIFIED] Re-styled mobile table to keep thead and use card-like rows */
             .table-scroll-wrapper {
                 overflow-x: hidden; /* Prevent horizontal scroll on the wrapper */
             }
