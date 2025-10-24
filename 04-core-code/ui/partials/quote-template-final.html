@@ -222,6 +222,13 @@
             font-weight: bold;
         }
 
+        /* --- [NEW] Wrapper for Summary and Payment sections --- */
+        .summary-payment-wrapper {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+        }
+
         .pmd-cta-wrapper {
             display: flex;
             justify-content: space-between;
@@ -336,17 +343,21 @@
                 margin-right: 8px;
             }
 
+            /* [MODIFIED] Set justify-content to center to ensure summary table stays on the right */
             .summary-section {
                 justify-content: center;
             }
 
-            .pmd-cta-wrapper {
+            /* [MODIFIED] Changed from pmd-cta-wrapper to the new parent wrapper */
+            .summary-payment-wrapper {
                 flex-direction: column;
                 gap: 20px;
             }
 
+            /* [MODIFIED] Changed from pmd-cta-wrapper to the new parent wrapper */
             .payment-info,
-            .call-to-action {
+            .call-to-action,
+            .summary-section {
                 width: 100%;
                 box-sizing: border-box; /* Fix for overflow issue */
             }
@@ -457,40 +468,7 @@
                     </div>
                 </section>
 
-                <section class="summary-section">
-                    <div class="summary-details">
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td class="summary-label">Subtotal</td>
-                                    <td class="summary-value">{{subtotal}}</td>
-                                </tr>
-                                <tr>
-                                    <td class="summary-label">GST (10%)</td>
-                                    <td class="summary-value">{{gst}}</td>
-                                </tr>
-                                <tr class="grand-total">
-                                    <td class="summary-label">Total</td>
-                                    <td class="summary-value">{{grandTotal}}</td>
-                                </tr>
-                                <tr>
-                                    <td class="summary-label">Deposit (50%)</td>
-                                    <td class="summary-value">{{deposit}}</td>
-                                </tr>
-                                <tr>
-                                    <td class="summary-label"><strong>Balance</strong></td>
-                                    <td class="summary-value"><strong>{{balance}}</strong></td>
-                                </tr>
-                                <tr>
-                                    <td class="summary-label">You Saved</td>
-                                    <td class="summary-value savings-value">{{savings}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-
-                <div class="pmd-cta-wrapper">
+                <div class="summary-payment-wrapper">
                     <section class="payment-info">
                         <h4>Payment Method</h4>
                         <p><strong>Bank:</strong> CBA</p>
@@ -503,6 +481,41 @@
                                 transaction.</em></p>
                     </section>
 
+                    <section class="summary-section">
+                        <div class="summary-details">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td class="summary-label">Subtotal</td>
+                                        <td class="summary-value">{{subtotal}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="summary-label">GST (10%)</td>
+                                        <td class="summary-value">{{gst}}</td>
+                                    </tr>
+                                    <tr class="grand-total">
+                                        <td class="summary-label">Total</td>
+                                        <td class="summary-value">{{grandTotal}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="summary-label">Deposit (50%)</td>
+                                        <td class="summary-value">{{deposit}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="summary-label"><strong>Balance</strong></td>
+                                        <td class="summary-value"><strong>{{balance}}</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="summary-label">You Saved</td>
+                                        <td class="summary-value savings-value">{{savings}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="pmd-cta-wrapper">
                     <section class="call-to-action">
                         <h4>How to Proceed</h4>
                         <p>To accept this quotation, please reply to this email confirming your acceptance. We will then
