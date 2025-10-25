@@ -25,7 +25,9 @@ export class InputHandler {
 
     _setupPhysicalKeyboard() {
         window.addEventListener('keydown', (event) => {
-            if (event.target.matches('input:not([readonly])')) {
+            // [MODIFIED] Added 'textarea' to the selector to prevent the handler
+            // from intercepting its keyboard events, thus fixing the backspace bug.
+            if (event.target.matches('input:not([readonly]), textarea')) {
                 return;
             }
             
