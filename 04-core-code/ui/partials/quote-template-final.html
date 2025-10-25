@@ -122,8 +122,6 @@
             flex-direction: row;
             gap: 20px;
             align-items: stretch;
-            /* Make child items equal height */
-            /* [NEW] Center the two boxes horizontally */
             justify-content: center;
         }
 
@@ -134,9 +132,7 @@
             box-sizing: border-box;
             border: 1px solid var(--border-color);
             border-radius: 4px;
-            /* [MODIFIED] Set top padding to 30px */
             padding: 30px 20px 20px;
-            /* [MODIFIED] Added max-width for symmetry */
             max-width: 400px;
         }
 
@@ -148,7 +144,7 @@
             display: flex;
             flex-direction: column;
         }
-
+        
         .payment-content-wrapper {
             padding: 20px;
         }
@@ -171,26 +167,23 @@
         /* --- Right Side: Summary Section --- */
         .summary-section {
             display: flex;
-            justify-content: center;
-            align-items: center;
+            justify-content: center; 
+            align-items: center;     
             border: 1px solid var(--border-color);
             border-radius: 4px;
-            /* [MODIFIED] Set top padding to 15px */
             padding: 15px 20px 20px;
             width: 50%;
             box-sizing: border-box;
-            /* [NEW] Add max-width to match payment-info */
             max-width: 400px;
         }
 
         .summary-details {
             width: 100%;
-            /* max-width is now on the parent */
         }
 
         .summary-details table {
             width: 100%;
-            border: 2px solid var(--border-dark-grey);
+            border: 2px solid var(--border-dark-grey); 
             border-collapse: collapse;
         }
 
@@ -243,7 +236,6 @@
             .payment-info,
             .summary-section {
                 width: 100%;
-                /* Remove max-width on mobile */
                 max-width: none; 
             }
 
@@ -253,7 +245,6 @@
 
             .summary-payment-wrapper .payment-info {
                 order: 2;
-                /* Reset padding for mobile */
                 padding: 20px;
             }
         }
@@ -267,9 +258,9 @@
             <header class="header">
                 <div class="quotation-meta">
                     <h2>QUOTATION</h2>
-                    <p><strong>Quote No:</strong> RB2025102514</p>
-                    <p><strong>Issue Date:</strong> 2025-10-25</p>
-                    <p><strong>Due Date:</strong> 2025-11-08</p>
+                    <p><strong>Quote No:</strong> {{quoteId}}</p>
+                    <p><strong>Issue Date:</strong> {{issueDate}}</p>
+                    <p><strong>Due Date:</strong> {{dueDate}}</p>
                 </div>
                 <div class="company-details">
                     <h1>EZ Blinds & Shutters</h1>
@@ -277,6 +268,10 @@
                 </div>
             </header>
             <main>
+                <section class="customer-info">
+                    <p>{{{customerInfoHtml}}}</p>
+                </section>
+
                 <section class="items-section">
                     <table class="items-table">
                         <thead>
@@ -289,48 +284,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Roller Blinds</td>
-                                <td class="align-right">5</td>
-                                <td class="align-right"><span class="original-price">$1452.00</span></td>
-                                <td class="align-right"><span class="discounted-price">$1306.80</span></td>
-                            </tr>
-                             <tr>
-                                <td>2</td>
-                                <td>Installation Accessories</td>
-                                <td class="align-right">NA</td>
-                                <td class="align-right">$60.00</td>
-                                <td class="align-right">$60.00</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Motorised Accessories</td>
-                                <td class="align-right">NA</td>
-                                <td class="align-right">$1265.00</td>
-                                <td class="align-right">$1265.00</td>
-                            </tr>
-                             <tr>
-                                <td>4</td>
-                                <td>Delivery</td>
-                                <td class="align-right">1</td>
-                                <td class="align-right">$100.00</td>
-                                <td class="align-right">$100.00</td>
-                            </tr>
-                             <tr>
-                                <td>5</td>
-                                <td>Installation</td>
-                                <td class="align-right">5</td>
-                                <td class="align-right">$100.00</td>
-                                <td class="align-right">$100.00</td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>Removal</td>
-                                <td class="align-right">2</td>
-                                <td class="align-right">$40.00</td>
-                                <td class="align-right">$40.00</td>
-                            </tr>
+                            {{{itemsTableBody}}}
                         </tbody>
                     </table>
                 </section>
@@ -357,27 +311,27 @@
                                 <tbody>
                                     <tr>
                                         <td class="summary-label">Subtotal</td>
-                                        <td class="summary-value">$2891.80</td>
+                                        <td class="summary-value">{{subtotal}}</td>
                                     </tr>
                                     <tr>
                                         <td class="summary-label">GST (10%)</td>
-                                        <td class="summary-value">$300.00</td>
+                                        <td class="summary-value">{{gst}}</td>
                                     </tr>
                                     <tr class="grand-total">
                                         <td class="summary-label">Total</td>
-                                        <td class="summary-value">$3300.00</td>
+                                        <td class="summary-value">{{grandTotal}}</td>
                                     </tr>
                                     <tr>
                                         <td class="summary-label">Deposit (50%)</td>
-                                        <td class="summary-value">$1650.00</td>
+                                        <td class="summary-value">{{deposit}}</td>
                                     </tr>
                                     <tr>
                                         <td class="summary-label"><strong>Balance</strong></td>
-                                        <td class="summary-value"><strong>$1650.00</strong></td>
+                                        <td class="summary-value"><strong>{{balance}}</strong></td>
                                     </tr>
                                     <tr>
                                         <td class="summary-label">You Saved</td>
-                                        <td class="summary-value savings-value">$145.20</td>
+                                        <td class="summary-value savings-value">{{savings}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -387,12 +341,12 @@
 
                 <section class="notes-terms-box">
                     <h4>General Notes</h4>
-                    <p>這是一項測試的文件，不代表真實的交易，最後的交易內容均需以現場估價單為準。</p>
+                    <p>{{{generalNotes}}}</p>
                 </section>
 
                 <section class="terms notes-terms-box">
                     <h4>Terms & Conditions</h4>
-                    <p>一切以官網公布的為準。</p>
+                    {{{termsAndConditions}}}
                 </section>
 
             </main>
