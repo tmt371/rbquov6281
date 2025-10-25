@@ -16,7 +16,6 @@
             --success-color: #2e7d32;
             /* 綠色，用於節省金額 */
             --icon-color: #888888;
-            --border-dark-grey: #555555;
         }
 
         body {
@@ -51,6 +50,7 @@
             margin-bottom: 30px;
         }
 
+        /* 公司資訊 */
         .company-details {
             text-align: right;
         }
@@ -70,6 +70,7 @@
             justify-content: flex-end;
         }
 
+        /* 報價單資訊 */
         .quotation-meta {
             text-align: left;
         }
@@ -78,11 +79,43 @@
             margin: 0 0 20px 0;
             font-size: 24px;
             color: #B22222;
+            /* Brick Red 磚紅色 */
         }
 
         .quotation-meta p {
             margin: 4px 0 0;
             font-size: 14px;
+        }
+
+        .icon {
+            color: var(--icon-color);
+            margin-right: 8px;
+            font-size: 16px;
+            width: 20px;
+            text-align: center;
+            order: -1;
+            margin-left: 0;
+            margin-right: 8px;
+        }
+        
+        .company-details .icon {
+            order: 1;
+            margin-right: 0;
+            margin-left: 8px;
+        }
+
+        .company-details .abn-line {
+            padding-right: 28px;
+        }
+
+        /* --- 客戶資訊 --- */
+        .customer-info {
+            margin-bottom: 40px;
+        }
+
+        .customer-info p {
+            margin: 4px 0;
+            line-height: 1.6;
         }
 
         /* --- 項目表格 --- */
@@ -112,91 +145,62 @@
             vertical-align: top;
         }
 
+        .items-table .description {
+            font-weight: 500;
+        }
+
+        .items-table .details {
+            font-size: 13px;
+            color: #666;
+        }
+
         .items-table .align-right {
             text-align: right;
         }
 
-        /* --- Wrapper for Summary and Payment sections --- */
-        .summary-payment-wrapper {
-            display: flex;
-            flex-direction: row;
-            gap: 20px;
-            align-items: stretch;
-            /* Make child items equal height */
-            /* [NEW] Center the two boxes horizontally */
-            justify-content: center;
-        }
-
-        /* --- Left Side: Payment Info --- */
-        .payment-info {
-            width: 50%;
-            margin-top: 0;
-            box-sizing: border-box;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            /* [MODIFIED] Set top padding to 30px */
-            padding: 30px 20px 20px;
-            /* [MODIFIED] Added max-width for symmetry */
-            max-width: 400px;
-        }
-
-        .payment-details {
-            border: 2px solid var(--border-dark-grey);
-            border-radius: 4px;
-            height: 100%;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .payment-content-wrapper {
-            padding: 20px;
-        }
-
-        .payment-details h4 {
-            margin-top: 0;
-            color: var(--primary-color);
-        }
-
-        .payment-details p {
-            margin: 4px 0;
+        .items-table .original-price {
+            text-decoration: line-through;
+            color: #999;
             font-size: 14px;
         }
 
-        .payment-details strong {
-            display: inline-block;
-            width: 80px;
+        .items-table .discounted-price {
+            font-weight: bold;
+            color: #d32f2f;
         }
 
-        /* --- Right Side: Summary Section --- */
+        .items-table .is-excluded {
+            text-decoration: line-through;
+            color: #999;
+        }
+        
+        .table-scroll-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* --- 總計 --- */
         .summary-section {
             display: flex;
-            justify-content: center;
-            align-items: center;
+            justify-content: flex-end;
             border: 1px solid var(--border-color);
             border-radius: 4px;
-            /* [MODIFIED] Set top padding to 15px */
-            padding: 15px 20px 20px;
+            padding: 20px;
             width: 50%;
             box-sizing: border-box;
-            /* [NEW] Add max-width to match payment-info */
-            max-width: 400px;
         }
 
         .summary-details {
             width: 100%;
-            /* max-width is now on the parent */
+            max-width: 400px;
         }
 
         .summary-details table {
             width: 100%;
-            border: 2px solid var(--border-dark-grey);
-            border-collapse: collapse;
         }
 
         .summary-details td {
             padding: 8px 0;
-            border: none;
         }
 
         .summary-details .summary-label {
@@ -215,46 +219,210 @@
             font-size: 18px;
             font-weight: bold;
             color: var(--primary-color);
-            border-top: 2px solid var(--border-dark-grey);
+            border-top: 2px solid var(--primary-color);
             padding-top: 10px;
         }
-        
-        /* Other sections, unchanged */
-        .customer-info, .terms, .footer, .notes-terms-box { margin-top: 30px; }
+
+        .summary-details .savings-value {
+            color: var(--success-color);
+            font-weight: bold;
+        }
+
+        /* --- Wrapper for Summary and Payment sections --- */
+        .summary-payment-wrapper {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .payment-info {
+            width: 50%;
+            margin-top: 0;
+            box-sizing: border-box;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 20px;
+        }
+
+        .payment-info h4 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .payment-info p {
+            margin: 4px 0;
+            font-size: 14px;
+        }
+
+        .payment-info strong {
+            display: inline-block;
+            width: 80px;
+        }
+
+        /* [REMOVED] Old .pmd-cta-wrapper is no longer needed */
+
+        /* [NEW] A unified style for the notes and terms boxes */
         .notes-terms-box {
             width: 100%;
+            margin-top: 30px;
             padding: 20px;
             background-color: #f9f9f9;
             border: 1px solid var(--border-color);
             border-radius: 4px;
             box-sizing: border-box;
         }
-        .notes-terms-box h4 { margin-top: 0; color: var(--primary-color); }
-        .notes-terms-box p { margin-bottom: 0; font-size: 14px; line-height: 1.6; white-space: normal; word-wrap: break-word; }
-        .terms { font-size: 13px; color: #666; margin-top: 20px; }
-        .footer { text-align: center; font-size: 12px; color: #888; border-top: 1px solid var(--border-color); padding-top: 20px; }
+
+        .notes-terms-box h4 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .notes-terms-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            line-height: 1.6;
+            white-space: normal;
+            word-wrap: break-word;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            font-size: 12px;
+            color: #888;
+            text-align: center;
+        }
+
+        /* [MODIFIED] .terms now uses the shared style */
+        .terms {
+            margin-top: 20px; /* Reduced margin as it's now part of a consistent flow */
+        }
 
 
         @media (max-width: 768px) {
+            .quotation-container {
+                padding: 10px;
+            }
+
+            .quotation-inner-wrapper {
+                padding: 20px;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .quotation-meta {
+                order: 1;
+            }
+
+            .company-details {
+                order: 2;
+                margin-top: 20px;
+            }
+
+            .company-details,
+            .quotation-meta {
+                text-align: left;
+            }
+
+            .company-details p {
+                justify-content: flex-start;
+            }
+
+            .company-details .abn-line {
+                padding-right: 0;
+            }
+
+            .company-details .icon {
+                order: -1;
+                margin-left: 0;
+                margin-right: 8px;
+            }
+
+            .summary-section {
+                justify-content: center;
+                padding: 0;
+                border: none;
+            }
+
             .summary-payment-wrapper {
                 flex-direction: column;
+                gap: 20px;
             }
-
-            .payment-info,
-            .summary-section {
-                width: 100%;
-                /* Remove max-width on mobile */
-                max-width: none; 
-            }
-
+            
             .summary-payment-wrapper .summary-section {
                 order: 1;
             }
 
             .summary-payment-wrapper .payment-info {
                 order: 2;
-                /* Reset padding for mobile */
-                padding: 20px;
+            }
+
+            .payment-info,
+            .summary-section {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            /* [MODIFIED] Ensure notes/terms box is also full width on mobile */
+            .notes-terms-box {
+                width: 100%;
+            }
+
+            .table-scroll-wrapper {
+                overflow-x: hidden;
+            }
+            .items-table {
+                border: none;
+            }
+            .items-table thead {
+                border: none;
+                clip: rect(0 0 0 0);
+                height: 1px;
+                margin: -1px;
+                overflow: hidden;
+                padding: 0;
+                position: absolute;
+                width: 1px;
+            }
+            .items-table tr {
+                display: block;
+                margin-bottom: 15px;
+                border: 1px solid var(--border-color);
+                border-radius: 5px;
+                padding: 0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            }
+            .items-table td {
+                display: flex;
+                justify-content: space-between;
+                padding: 10px 15px;
+                border: none;
+                border-bottom: 1px solid var(--border-color);
+                text-align: right;
+            }
+            .items-table tr td:last-child {
+                border-bottom: none;
+            }
+            .items-table td:before {
+                content: attr(data-label);
+                font-weight: 600;
+                text-align: left;
+                padding-right: 15px;
+                color: #333;
+            }
+            .items-table td:first-of-type {
+                background-color: var(--primary-color);
+                color: white;
+                font-weight: bold;
+                border-radius: 4px 4px 0 0;
+            }
+            .items-table td:first-of-type::before {
+                color: white;
             }
         }
     </style>
@@ -267,88 +435,58 @@
             <header class="header">
                 <div class="quotation-meta">
                     <h2>QUOTATION</h2>
-                    <p><strong>Quote No:</strong> RB2025102514</p>
-                    <p><strong>Issue Date:</strong> 2025-10-25</p>
-                    <p><strong>Due Date:</strong> 2025-11-08</p>
+                    <p><strong>Quote No:</strong> {{quoteId}}</p>
+                    <p><strong>Issue Date:</strong> {{issueDate}}</p>
+                    <p><strong>Due Date:</strong> {{dueDate}}</p>
                 </div>
                 <div class="company-details">
                     <h1>EZ Blinds & Shutters</h1>
                     <p class="abn-line">ABN: 52 62 74 20 777</p>
+                    <p>U11 / 271 Wells Rd, Chelsea Heights<span class="icon">📍</span></p>
+                    <p>
+                        <span>0466 965 168<span class="icon">📞</span></span>
+                        <span style="margin: 0 10px;">|</span>
+                        <span>ezblinds@ezbns.com.au<span class="icon">📧</span></span>
+                    </p>
+                    <p>www.ezbns.com.au<span class="icon">🌐</span></p>
                 </div>
             </header>
+
             <main>
+                <section class="customer-info">
+                    <p>{{{customerInfoHtml}}}</p>
+                </section>
+
                 <section class="items-section">
-                    <table class="items-table">
-                        <thead>
-                            <tr>
-                                <th>NO</th>
-                                <th>Description</th>
-                                <th class="align-right">QTY</th>
-                                <th class="align-right">Price</th>
-                                <th class="align-right">Discounted Price</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Roller Blinds</td>
-                                <td class="align-right">5</td>
-                                <td class="align-right"><span class="original-price">$1452.00</span></td>
-                                <td class="align-right"><span class="discounted-price">$1306.80</span></td>
-                            </tr>
-                             <tr>
-                                <td>2</td>
-                                <td>Installation Accessories</td>
-                                <td class="align-right">NA</td>
-                                <td class="align-right">$60.00</td>
-                                <td class="align-right">$60.00</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Motorised Accessories</td>
-                                <td class="align-right">NA</td>
-                                <td class="align-right">$1265.00</td>
-                                <td class="align-right">$1265.00</td>
-                            </tr>
-                             <tr>
-                                <td>4</td>
-                                <td>Delivery</td>
-                                <td class="align-right">1</td>
-                                <td class="align-right">$100.00</td>
-                                <td class="align-right">$100.00</td>
-                            </tr>
-                             <tr>
-                                <td>5</td>
-                                <td>Installation</td>
-                                <td class="align-right">5</td>
-                                <td class="align-right">$100.00</td>
-                                <td class="align-right">$100.00</td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>Removal</td>
-                                <td class="align-right">2</td>
-                                <td class="align-right">$40.00</td>
-                                <td class="align-right">$40.00</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="table-scroll-wrapper">
+                        <table class="items-table">
+                            <thead>
+                                <tr>
+                                    <th>NO</th>
+                                    <th>Description</th>
+                                    <th class="align-right">QTY</th>
+                                    <th class="align-right">Price</th>
+                                    <th class="align-right">Discounted Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{{itemsTableBody}}}
+                            </tbody>
+                        </table>
+                    </div>
                 </section>
 
                 <div class="summary-payment-wrapper">
                     <section class="payment-info">
-                        <div class="payment-details">
-                            <div class="payment-content-wrapper">
-                                <h4>Payment Method</h4>
-                                <p><strong>Bank:</strong> CBA</p>
-                                <p><strong>BSB:</strong> 062 692</p>
-                                <p><strong>Account:</strong> 4570 8877</p>
-                                <p><strong>Acc Name:</strong> Alphalead Pty Ltd</p>
-                                <hr style="border:0; border-top:1px dashed #ccc; margin: 10px 0;">
-                                <p><strong>PayID:</strong> 627 420 777</p>
-                                <p style="font-size: 12px; margin-top: 10px;"><em>Please leave your Ph. number as Ref. in the transaction.</em></p>
-                            </div>
-                        </div>
+                        <h4>Payment Method</h4>
+                        <p><strong>Bank:</strong> CBA</p>
+                        <p><strong>BSB:</strong> 062 692</p>
+                        <p><strong>Account:</strong> 4570 8877</p>
+                        <p><strong>Acc Name:</strong> Alphalead Pty Ltd</p>
+                        <hr style="border:0; border-top:1px dashed #ccc; margin: 10px 0;">
+                        <p><strong>PayID:</strong> 627 420 777</p>
+                        <p style="font-size: 12px; margin-top: 10px;"><em>Please leave your Ph. number as Ref. in the
+                                transaction.</em></p>
                     </section>
 
                     <section class="summary-section">
@@ -357,27 +495,27 @@
                                 <tbody>
                                     <tr>
                                         <td class="summary-label">Subtotal</td>
-                                        <td class="summary-value">$2891.80</td>
+                                        <td class="summary-value">{{subtotal}}</td>
                                     </tr>
                                     <tr>
                                         <td class="summary-label">GST (10%)</td>
-                                        <td class="summary-value">$300.00</td>
+                                        <td class="summary-value">{{gst}}</td>
                                     </tr>
                                     <tr class="grand-total">
                                         <td class="summary-label">Total</td>
-                                        <td class="summary-value">$3300.00</td>
+                                        <td class="summary-value">{{grandTotal}}</td>
                                     </tr>
                                     <tr>
                                         <td class="summary-label">Deposit (50%)</td>
-                                        <td class="summary-value">$1650.00</td>
+                                        <td class="summary-value">{{deposit}}</td>
                                     </tr>
                                     <tr>
                                         <td class="summary-label"><strong>Balance</strong></td>
-                                        <td class="summary-value"><strong>$1650.00</strong></td>
+                                        <td class="summary-value"><strong>{{balance}}</strong></td>
                                     </tr>
                                     <tr>
                                         <td class="summary-label">You Saved</td>
-                                        <td class="summary-value savings-value">$145.20</td>
+                                        <td class="summary-value savings-value">{{savings}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -387,12 +525,12 @@
 
                 <section class="notes-terms-box">
                     <h4>General Notes</h4>
-                    <p>這是一項測試的文件，不代表真實的交易，最後的交易內容均需以現場估價單為準。</p>
+                    <p>{{{generalNotes}}}</p>
                 </section>
 
                 <section class="terms notes-terms-box">
                     <h4>Terms & Conditions</h4>
-                    <p>一切以官網公布的為準。</p>
+                    {{{termsAndConditions}}}
                 </section>
 
             </main>
